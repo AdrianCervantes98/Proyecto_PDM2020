@@ -32,7 +32,7 @@ class _SplashScreenState extends State {
         fit: StackFit.expand,
         children: [
           Container(
-            decoration: BoxDecoration(color: Colors.orangeAccent),
+            decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -50,7 +50,7 @@ class _SplashScreenState extends State {
                         padding: EdgeInsets.only(top: 10.0),
                       ),
                       Text(
-                        "Splash Screen",
+                        "Bienvenido.",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _SplashScreenState extends State {
                       padding: EdgeInsets.only(top: 20.0),
                     ),
                     Text(
-                      "Pantalla Splash en Flutter\nMejor Código",
+                      "Espere mientras preparamos todo para usted.",
                       softWrap: true,
                       textAlign: TextAlign.center,
                       style: TextStyle(

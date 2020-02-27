@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final_pdm/login/login.dart';
 
 class Startup extends StatelessWidget {
   const Startup({Key key}) : super(key: key);
@@ -46,7 +47,11 @@ class Startup extends StatelessWidget {
                   ),
                   color: Theme.of(context).accentColor,
                   onPressed: () {
-                    
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context){
+                        return Login();
+                      })
+                    );
                   },
                   height: 50,
                   minWidth: 370,
