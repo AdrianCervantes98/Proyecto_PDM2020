@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final_pdm/profile/profile.dart';
 
 showAlertDialog(BuildContext context) {
   Widget okButton = FlatButton(
@@ -110,7 +111,11 @@ class _LoginState extends State<Login> {
                         style: Theme.of(context).textTheme.body1,
                       ),
                       color: Theme.of(context).accentColor,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return Profile();
+                        }));
+                      },
                       height: 50,
                       minWidth: 370,
                       shape: RoundedRectangleBorder(
