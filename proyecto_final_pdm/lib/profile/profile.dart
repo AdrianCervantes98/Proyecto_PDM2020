@@ -43,7 +43,7 @@ class Profile extends StatelessWidget {
                 SizedBox(
                   height: 5,
                 ),
-                Text("isaac21@ogt.com"),
+                Text("isaac21@jaja.com"),
                 SizedBox(
                   height: 2,
                 ),
