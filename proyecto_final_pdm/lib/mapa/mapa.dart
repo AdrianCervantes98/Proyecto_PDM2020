@@ -44,37 +44,32 @@ class _MapaState extends State<Mapa> {
 
   Widget _drawer() {
     return Drawer(
-      elevation: 16.0,
-      child: Column(
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: Text("xyz"),
-            accountEmail: Text("xyz@gmail.com"),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Text("xyz"),
+      child: Container(
+ 
+        child: new ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text("Restaurantes",
+              style: TextStyle(
+                fontSize: 20,
+              ),),
+              leading: Icon(Icons.restaurant),
             ),
-            otherAccountsPictures: <Widget>[
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text("abc"),
-              )
-            ],
-          ),
-          ListTile(
-            title: new Text("Ubicación"),
-            leading: new Icon(Icons.flight),
-          ),
-          Divider(),
-          ListTile(
-            onTap: () {
-              _goToPichi();
-              Navigator.of(context).pop();
-            },
-            title: new Text("El pichi"),
-            trailing: new Icon(Icons.arrow_forward_ios),
-          ),
-        ],
+            Divider(),
+            ListTile(
+              onTap: () {
+                _goToPichi();
+                Navigator.of(context).pop();
+              },
+              title: new Text("El pichi",
+              style: TextStyle(
+                fontSize: 18,
+              ),
+              ),
+              trailing: new Icon(Icons.arrow_forward_ios),
+            ),
+          ],
+        ),
       ),
     );
   }
