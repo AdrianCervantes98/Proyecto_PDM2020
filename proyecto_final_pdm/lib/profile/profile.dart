@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final_pdm/mapa/mapa.dart';
 
 import '../login/startup.dart';
 
@@ -67,7 +68,11 @@ class Profile extends StatelessWidget {
                 ListTile(
                   title: Text("Ubicación"),
                   leading: Icon(Icons.map),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return Mapa();
+                        }));
+                  },
                 ),
                 ListTile(
                   title: Text("Pedidos"),

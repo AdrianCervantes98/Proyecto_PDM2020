@@ -1,6 +1,6 @@
 name: proyecto_final_pdm
 description: A new Flutter project.
-
+ 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
@@ -19,13 +19,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_maps_flutter: ^0.5.11
   
   
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-
+ 
 dev_dependencies:
   flutter_test:
     sdk: flutter
