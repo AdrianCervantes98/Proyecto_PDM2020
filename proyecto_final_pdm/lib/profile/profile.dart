@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final_pdm/mapa/mapa.dart';
+import 'package:proyecto_final_pdm/products/products.dart';
+import 'package:proyecto_final_pdm/utils/constants.dart';
 
 import '../login/startup.dart';
 
@@ -58,7 +60,11 @@ class Profile extends StatelessWidget {
                 ListTile(
                   title: Text("Productos"),
                   leading: Icon(Icons.bookmark),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return Products(hamburguesasList: hamburguesasList,);
+                        }));
+                  },
                 ),
                 ListTile(
                   title: Text("Fotos"),
