@@ -16,10 +16,8 @@ class Startup extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-              
-                    Image.network(
+                Image.network(
                   "https://www.iteso.mx/documents/27014/202031/Logo-ITESO-MinimoV.png",
-                  
                 ),
               ],
             ),
@@ -29,17 +27,19 @@ class Startup extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   MaterialButton(
-                    child: Text("REGISTRO", style: Theme.of(context).textTheme.body1),
+                    child: Text("REGISTRO",
+                        style: Theme.of(context).textTheme.body1),
                     color: Theme.of(context).accentColor,
                     onPressed: () {
-                      Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context){
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
                         return Register();
-                      })
-                    );
+                      }));
                     },
                     height: 50,
                     minWidth: 370,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10)),
                   ),
                 ],
               ),
@@ -48,18 +48,21 @@ class Startup extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 MaterialButton(
-                  child: Text("INICIAR SESIÓN", style: Theme.of(context).textTheme.body1,
+                  child: Text(
+                    "INICIAR SESIÓN",
+                    style: Theme.of(context).textTheme.body1,
                   ),
                   color: Theme.of(context).accentColor,
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context){
-                        return Login();
-                      })
-                    );
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return Login();
+                    }));
                   },
                   height: 50,
                   minWidth: 370,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(10)),
                 ),
               ],
             ),

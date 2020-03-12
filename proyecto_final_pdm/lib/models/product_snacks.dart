@@ -12,7 +12,8 @@ class ProductSnacks {
     @required this.productDescription,
     @required this.productImage,
     @required this.productAmount,
-    @required this.available
+    @required this.available,
+    @required this.productPrice
   }) {
     
   }

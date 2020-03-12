@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_final_pdm/comida/item_hamburguesa.dart';
 import 'package:proyecto_final_pdm/comida/item_hotdog.dart';
 import 'package:proyecto_final_pdm/models/product_hamburguesas.dart';
 import 'package:proyecto_final_pdm/models/product_hotdog.dart';
 import 'package:proyecto_final_pdm/models/product_snacks.dart';
+import 'package:proyecto_final_pdm/products/products.dart';
 import 'package:proyecto_final_pdm/products/productsSn.dart';
-import 'package:proyecto_final_pdm/products/productshg.dart';
 import 'package:proyecto_final_pdm/profile/profile.dart';
 import 'package:proyecto_final_pdm/utils/constants.dart';
 
-class Products extends StatefulWidget {
+class ProductsHG extends StatefulWidget {
   final List<ProductHamburguesas> hamburguesasList;
   final List<ProductHotdog> hotdogList;
-  final List<ProductSnacks> snakcList;
-  Products({Key key, @required this.hamburguesasList, @required this.hotdogList, @required this.snakcList}) : super(key: key);
+  final List<ProductSnacks> snackList;
+  ProductsHG({Key key, @required this.hotdogList, @required this.hamburguesasList, @required this.snackList}) : super(key: key);
 
   @override
-  _ProductsState createState() => _ProductsState();
+  _ProductsHGState createState() => _ProductsHGState();
 }
 
-class _ProductsState extends State<Products> {
+class _ProductsHGState extends State<ProductsHG> {
   
   @override
   Widget build(BuildContext context) {
@@ -42,19 +41,19 @@ class _ProductsState extends State<Products> {
          mainAxisAlignment: MainAxisAlignment.start,
          crossAxisAlignment: CrossAxisAlignment.start,
          children: <Widget>[
-           Padding(
+            Padding(
              padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
-             child: Text("Hamburguesas",
+             child: Text("Hotdogs",
              style: TextStyle(
                fontSize: 24,
              ),),
            ),
            Container(
-             height: MediaQuery.of(context).size.height*0.666,
+             height: MediaQuery.of(context).size.height*0.329,
              child: ListView.builder(
-               itemCount: hamburguesasList.length,
+               itemCount: hotdogList.length,
                itemBuilder: (BuildContext context, int index) {
-               return ItemHamburguesa(hamburguesa: hamburguesasList[index]);
+               return ItemHotdog(hotdog: hotdogList[index]);
               },
              ),
            ),
@@ -78,6 +77,9 @@ class _ProductsState extends State<Products> {
             Divider(),
             ListTile(
               onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return Products(hamburguesasList: hamburguesasList,hotdogList: hotdogList,snakcList: snackList,);
+                        }));
               },
               title: new Text("Hamburguesas",
               style: TextStyle(
@@ -90,9 +92,6 @@ class _ProductsState extends State<Products> {
             Divider(),
             ListTile(
               onTap: () {
-                 Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return ProductsHG(hamburguesasList: hamburguesasList,hotdogList: hotdogList,snackList: snackList);
-                        }));
               },
               title: new Text("Hotdogs",
               style: TextStyle(
@@ -105,7 +104,7 @@ class _ProductsState extends State<Products> {
             Divider(),
             ListTile(
               onTap: () {
-                 Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                           return ProductsSn(snakcList: snackList,hotdogList: hotdogList,hamburguesasList: hamburguesasList,);
                         }));
               },

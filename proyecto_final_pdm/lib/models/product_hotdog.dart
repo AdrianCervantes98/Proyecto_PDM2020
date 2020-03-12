@@ -13,6 +13,7 @@ class ProductHotdog {
     @required this.productImage,
     @required this.productAmount,
     @required this.available,
+    @required this.productPrice,
   }) {
     
   }

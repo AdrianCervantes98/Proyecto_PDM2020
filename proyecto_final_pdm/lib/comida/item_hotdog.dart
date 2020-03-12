@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_final_pdm/models/product_hamburguesas.dart';
+import 'package:proyecto_final_pdm/models/product_hotdog.dart';
 
-class ItemHamburguesa extends StatefulWidget {
-  final ProductHamburguesas hamburguesa;
-  ItemHamburguesa({Key key, @required this.hamburguesa}) : super(key: key);
+class ItemHotdog extends StatefulWidget {
+  final ProductHotdog hotdog;
+  ItemHotdog({Key key, @required this.hotdog}) : super(key: key);
 
   @override
-  _ItemHamburguesaState createState() => _ItemHamburguesaState();
+  _ItemHotdogState createState() => _ItemHotdogState();
 }
 
-class _ItemHamburguesaState extends State<ItemHamburguesa> {
+class _ItemHotdogState extends State<ItemHotdog> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -24,28 +24,28 @@ class _ItemHamburguesaState extends State<ItemHamburguesa> {
           Container(
             alignment: Alignment(0, 0),
             width: MediaQuery.of(context).size.width*0.25,
-             child: ClipOval(
-               child: Image.network(
-                '${widget.hamburguesa.productImage}',
+            child: ClipOval(
+                          child: Image.network(
+                '${widget.hotdog.productImage}',
                 height: 100,
                 width: 100,
+              ),
             ),
-             ),
           ),
           Container(
             alignment: Alignment(0, 0),
             width: MediaQuery.of(context).size.width*0.27,
-            child: Text('${widget.hamburguesa.productDescription}')),
+            child: Text('${widget.hotdog.productDescription}')),
           Container(
            
             width: MediaQuery.of(context).size.width*0.20,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text('${widget.hamburguesa.productTitle}'),
+                Text('${widget.hotdog.productTitle}'),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: Text('\$${widget.hamburguesa.productPrice}'),
+                  child: Text('\$${widget.hotdog.productPrice}'),
                 ),
               ],
             )),
@@ -62,9 +62,9 @@ class _ItemHamburguesaState extends State<ItemHamburguesa> {
                     fontWeight: FontWeight.bold,
                   ),),
                 ),
-                Switch(value: widget.hamburguesa.available, onChanged: (value){
+                Switch(value: widget.hotdog.available, onChanged: (value){
                   setState(() {
-                    widget.hamburguesa.available = value;
+                    widget.hotdog.available = value;
                   });
                 }),
               ],

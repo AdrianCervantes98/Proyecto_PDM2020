@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final_pdm/mapa/mapa.dart';
 import 'package:proyecto_final_pdm/products/products.dart';
+import 'package:proyecto_final_pdm/profile/aboutUs.dart';
 import 'package:proyecto_final_pdm/utils/constants.dart';
 
 import '../login/startup.dart';
-
 
 class Profile extends StatelessWidget {
   const Profile({Key key}) : super(key: key);
@@ -27,7 +27,7 @@ class Profile extends StatelessWidget {
                   height: 130,
                   child: CircleAvatar(
                     backgroundImage: NetworkImage(
-                      "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/12140561_1639793912940425_1492637472149929856_n.jpg?_nc_cat=111&_nc_sid=174925&_nc_ohc=Yh48JErR8TkAX_tW82u&_nc_ht=scontent-dfw5-1.xx&oh=e258120ddc2b675bcadbd8f6296e06ee&oe=5EFB4792",
+                      "https://scontent.fgdl5-1.fna.fbcdn.net/v/t1.0-9/80284418_104483557732906_7111122384995745792_n.jpg?_nc_cat=111&_nc_sid=09cbfe&_nc_ohc=ANsbVegZ7D0AX96TLtE&_nc_ht=scontent.fgdl5-1.fna&oh=a0fe576bb47911e12449559db8f03e81&oe=5E94C508",
                     ),
                     minRadius: 33,
                     maxRadius: 73,
@@ -37,7 +37,7 @@ class Profile extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  "Isaac Cabrera",
+                  "El pichi",
                   style: Theme.of(context)
                       .textTheme
                       .display1
@@ -46,24 +46,32 @@ class Profile extends StatelessWidget {
                 SizedBox(
                   height: 5,
                 ),
-                Text("isaac21@jaja.com"),
+                Text("elpichi@outlookcom"),
                 SizedBox(
                   height: 2,
                 ),
                 ListTile(
                   title: Text("Información"),
-                  leading: Icon(Icons.favorite),
+                  leading: Icon(Icons.info),
                   onTap: () {
-                    
+                    Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return AboutUs();
+                      }));
                   },
                 ),
                 ListTile(
                   title: Text("Productos"),
                   leading: Icon(Icons.bookmark),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return Products(hamburguesasList: hamburguesasList,);
-                        }));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return Products(
+                        hamburguesasList: hamburguesasList,
+                        hotdogList: hotdogList,
+                        snakcList: snackList,
+                      );
+                    }));
                   },
                 ),
                 ListTile(
@@ -75,9 +83,10 @@ class Profile extends StatelessWidget {
                   title: Text("Ubicación"),
                   leading: Icon(Icons.map),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return Mapa();
-                        }));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return Mapa();
+                    }));
                   },
                 ),
                 ListTile(
@@ -97,17 +106,20 @@ class Profile extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                   MaterialButton(
-                      height: 38,
-                      minWidth: 370,
-                      color: Colors.grey[300],
-                      child: Text("Cerrar sesión"),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return Startup();
-                        }));
-                      },
-                    ),
+                  MaterialButton(
+                    height: 38,
+                    minWidth: 370,
+                    color: Colors.grey[300],
+                    child: Text("Cerrar sesión"),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return Startup();
+                      }));
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10)),
+                  ),
                 ],
               ),
             ),

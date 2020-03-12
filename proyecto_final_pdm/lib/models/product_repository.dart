@@ -43,6 +43,7 @@ class ProductRepository {
           productDescription: "Jitomate, cebolla",
           productImage: "https://www.kindpng.com/picc/m/53-530027_bacon-hot-dog-transparent-transparent-hot-dog-png.png",
           available: true,
+          productPrice: 25,
         ),
         ProductHotdog(
           productTitle: "Hawaiano",
@@ -50,6 +51,7 @@ class ProductRepository {
           productDescription: "Piña, queso, cebolla",
           productImage: "https://www.kindpng.com/picc/m/53-530027_bacon-hot-dog-transparent-transparent-hot-dog-png.png",
           available: true,
+          productPrice: 35,
         ),
       ];
     }
@@ -59,15 +61,17 @@ class ProductRepository {
           productTitle: "Nuggets",
           productAmount: 100,
           productDescription: "Dip Queso",
-          productImage: "https://www.kindpng.com/picc/m/53-530027_bacon-hot-dog-transparent-transparent-hot-dog-png.png",
-          available: true
+          productImage: "https://p7.hiclipart.com/preview/272/891/631/mcdonald-s-chicken-mcnuggets-chicken-nugget-french-fries-nuggets.jpg",
+          available: true,
+          productPrice: 70,
         ),
         ProductSnacks(
           productTitle: "Papas",
           productAmount: 100,
           productDescription: "Dip bbq",
-          productImage: "https://www.kindpng.com/picc/m/53-530027_bacon-hot-dog-transparent-transparent-hot-dog-png.png",
-          available: true
+          productImage: "https://www.stickpng.com/assets/images/585ac0544f6ae202fedf2939.png",
+          available: true,
+          productPrice: 45,
         ),
       ];
     }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:proyecto_final_pdm/profile/profile.dart';
 
 class Mapa extends StatefulWidget {
   Mapa({Key key}) : super(key: key);
@@ -22,21 +23,55 @@ final Set<Marker> _markers = Set();
 
 
 class _MapaState extends State<Mapa> {
+MapType _defaultMapType = MapType.normal;
+
+void _changeMapType() {
+    setState(() {
+      _defaultMapType = _defaultMapType == MapType.normal ? MapType.satellite : MapType.normal;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('Ubicación'),
           centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => Profile()),
+              );
+            },
+          ),
+          ],
         ),
         drawer: _drawer(),
         body: Stack(
           children: <Widget>[
             GoogleMap(
+              mapType: _defaultMapType,
               markers: _markers,
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
               initialCameraPosition: _initialPosition,
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 80, right: 10),
+              alignment: Alignment.topRight,
+              child: Column(
+                children: <Widget>[
+                  FloatingActionButton(
+                      child: Icon(Icons.layers),
+                      elevation: 5,
+                      backgroundColor: Colors.teal[200],
+                      onPressed: () {
+                        _changeMapType();
+                        print('Changing the Map Type');
+                      }),
+                ]),
             ),
           ],
         ));
@@ -48,13 +83,9 @@ class _MapaState extends State<Mapa> {
         child: new ListView(
 
           children: <Widget>[
-            new UserAccountsDrawerHeader(
-            accountName: Text("",
-            style: TextStyle(
-              color: Colors.orange,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),),
+             UserAccountsDrawerHeader(
+               accountName: Text(""),
+               accountEmail: Text(""),
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: NetworkImage(
