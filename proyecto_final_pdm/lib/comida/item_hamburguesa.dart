@@ -15,7 +15,7 @@ class _ItemHamburguesaState extends State<ItemHamburguesa> {
     return Card(
       elevation: 5,
       margin: EdgeInsets.all(5),
-      color: Colors.grey,
+      color: Theme.of(context).cardColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -51,11 +51,10 @@ class _SplashScreenState extends State {
                       ),
                       Text(
                         "Bienvenido.",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24.0),
-                      )
+                        style: 
+                            Theme.of(context).textTheme.body1.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
+                            
+                      ),
                     ],
                   ),
                 ),
@@ -73,10 +72,7 @@ class _SplashScreenState extends State {
                       "Espere mientras preparamos todo para usted.",
                       softWrap: true,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                          color: Colors.white),
+                      style: Theme.of(context).textTheme.body1.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
                     )
                   ],
                 ),

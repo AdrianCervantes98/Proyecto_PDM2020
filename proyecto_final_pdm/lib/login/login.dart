@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
                 child: Row(
                   children: <Widget>[
                     Text("Usuario o correo electrónico:",
-                        style: Theme.of(context).textTheme.body2),
+                        style: Theme.of(context).textTheme.body1),
                   ],
                 ),
               ),
@@ -78,7 +78,7 @@ class _LoginState extends State<Login> {
                   children: <Widget>[
                     Text(
                       "Contraseña:",
-                      style: Theme.of(context).textTheme.body2,
+                      style: Theme.of(context).textTheme.body1,
                     ),
                   ],
                 ),
@@ -89,12 +89,7 @@ class _LoginState extends State<Login> {
                   controller: _passwordController,
                   decoration: InputDecoration(
                     hintText: 'Contraseña',
-                    hintStyle: TextStyle(color: Colors.white),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.white,
-                      ),
-                    ),
+                    hintStyle: Theme.of(context).textTheme.body1,
                   ),
                   obscureText: true,
                   style: TextStyle(color: Colors.white),
@@ -128,7 +123,7 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text("¿Olvidaste tu password?",
-                      style: Theme.of(context).textTheme.body2),
+                      style: Theme.of(context).textTheme.body1),
                 ],
               ),
               Padding(
@@ -137,7 +132,7 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text("¿Aún no tienes una cuenta?",
-                        style: Theme.of(context).textTheme.body2),
+                        style: Theme.of(context).textTheme.body1),
                   ],
                 ),
               ),

@@ -16,6 +16,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        backgroundColor: Colors.white,
+        textTheme: TextTheme(
+          body1: TextStyle(
+            fontFamily: 'Rubik',
+            color: Colors.black,
+          ),
+        ),
+        cardColor: Colors.grey[300],
+      ),
       home: Scaffold(
         body: SplashScreen(), 
       ),
