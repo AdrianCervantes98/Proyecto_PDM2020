@@ -8,3 +8,16 @@ class HotdogsInitial extends HotdogsState {
   @override
   List<Object> get props => [];
 }
+
+class CloudStoreGetData extends HotdogsState {
+  @override
+  List<Object> get props => [];
+}
+
+class CloudStoreGetDataError extends HotdogsState {
+  final String errorMessage;
+
+  CloudStoreGetDataError({@required this.errorMessage});
+  @override
+  List<Object> get props => [errorMessage];
+}

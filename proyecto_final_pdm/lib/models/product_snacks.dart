@@ -3,7 +3,7 @@ class ProductSnacks {
   final String productTitle; // nombre del producto
   final String productDescription; // descripcion del producto
   final String productImage; // url de imagen del producto
-  double productPrice; // precio del producto autocalculado
+  int productPrice; // precio del producto autocalculado
   final int productAmount; // cantidad de producto por comprar
   bool available;
 
