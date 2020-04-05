@@ -3,8 +3,8 @@ import 'package:proyecto_final_pdm/comida/item_hotdog.dart';
 import 'package:proyecto_final_pdm/models/product_hamburguesas.dart';
 import 'package:proyecto_final_pdm/models/product_hotdog.dart';
 import 'package:proyecto_final_pdm/models/product_snacks.dart';
-import 'package:proyecto_final_pdm/products/products.dart';
-import 'package:proyecto_final_pdm/products/productsSn.dart';
+import 'package:proyecto_final_pdm/products/hamburgers/products.dart';
+import 'package:proyecto_final_pdm/products/snacks/productsSn.dart';
 import 'package:proyecto_final_pdm/profile/profile.dart';
 import 'package:proyecto_final_pdm/utils/constants.dart';
 
