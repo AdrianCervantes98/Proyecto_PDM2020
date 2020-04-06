@@ -21,3 +21,13 @@ class CloudStoreGetDataError extends SnacksState {
   @override
   List<Object> get props => [errorMessage];
 }
+
+class CloudStoreRemoved extends SnacksState {
+  @override
+  List<Object> get props => [];
+}
+
+class CloudStoreSaved extends SnacksState {
+  @override
+  List<Object> get props => [];
+}

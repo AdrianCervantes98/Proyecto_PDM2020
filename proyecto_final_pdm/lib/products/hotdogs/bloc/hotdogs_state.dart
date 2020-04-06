@@ -21,3 +21,14 @@ class CloudStoreGetDataError extends HotdogsState {
   @override
   List<Object> get props => [errorMessage];
 }
+
+class CloudStoreRemoved extends HotdogsState {
+  @override
+  List<Object> get props => [];
+}
+
+class CloudStoreSaved extends HotdogsState {
+  @override
+  List<Object> get props => [];
+}
+

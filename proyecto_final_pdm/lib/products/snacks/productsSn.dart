@@ -6,6 +6,7 @@ import 'package:proyecto_final_pdm/models/product_hotdog.dart';
 import 'package:proyecto_final_pdm/models/product_snacks.dart';
 import 'package:proyecto_final_pdm/products/hamburgers/products.dart';
 import 'package:proyecto_final_pdm/products/hotdogs/productshg.dart';
+import 'package:proyecto_final_pdm/products/snacks/add_snack/add_snack.dart';
 import 'package:proyecto_final_pdm/products/snacks/bloc/snacks_bloc.dart';
 import 'package:proyecto_final_pdm/profile/profile.dart';
 import 'package:proyecto_final_pdm/utils/constants.dart';
@@ -50,6 +51,21 @@ class _ProductsSnState extends State<ProductsSn> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        heroTag: UniqueKey(),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => BlocProvider.value(
+                value: bloc,
+                child: AddSnack(),
+              ),
+            ),
+          );
+        },
+        label: Text("Agregar"),
+        icon: Icon(Icons.add_box),
+      ),
       drawer: _drawer(),
       body: BlocProvider(
         create: (context) {
@@ -71,7 +87,23 @@ class _ProductsSnState extends State<ProductsSn> {
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   SnackBar(
-                    content: Text("Error al obtener la lista de productos."),
+                    content: Text("${state.errorMessage}"),
+                  ),
+                );
+            } else if (state is CloudStoreSaved) {
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text("Se ha guardado el elemento."),
+                  ),
+                );
+            } else if (state is CloudStoreRemoved) {
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text("Se ha eliminado el elemento."),
                   ),
                 );
             }

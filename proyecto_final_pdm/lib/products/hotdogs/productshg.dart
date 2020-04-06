@@ -5,6 +5,7 @@ import 'package:proyecto_final_pdm/models/product_hamburguesas.dart';
 import 'package:proyecto_final_pdm/models/product_hotdog.dart';
 import 'package:proyecto_final_pdm/models/product_snacks.dart';
 import 'package:proyecto_final_pdm/products/hamburgers/products.dart';
+import 'package:proyecto_final_pdm/products/hotdogs/add_hotdogs/add_hotdog.dart';
 import 'package:proyecto_final_pdm/products/hotdogs/bloc/hotdogs_bloc.dart';
 import 'package:proyecto_final_pdm/products/snacks/productsSn.dart';
 import 'package:proyecto_final_pdm/profile/profile.dart';
@@ -50,6 +51,21 @@ class _ProductsHGState extends State<ProductsHG> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        heroTag: UniqueKey(),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => BlocProvider.value(
+                value: bloc,
+                child: AddHotdog(),
+              ),
+            ),
+          );
+        },
+        label: Text("Agregar"),
+        icon: Icon(Icons.add_box),
+      ),
       drawer: _drawer(),
       body: 
       BlocProvider(
@@ -72,7 +88,24 @@ class _ProductsHGState extends State<ProductsHG> {
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   SnackBar(
-                    content: Text("Error al obtener la lista de productos."),
+                    content: Text("${state.errorMessage}"),
+                  ),
+                );
+            }
+            else if (state is CloudStoreSaved) {
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text("Se ha guardado el elemento."),
+                  ),
+                );
+            } else if (state is CloudStoreRemoved) {
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text("Se ha eliminado el elemento."),
                   ),
                 );
             }
@@ -187,30 +220,3 @@ class _ProductsHGState extends State<ProductsHG> {
     );
   }
 }
-
-/*
- * Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
-            child: Text(
-              "Hotdogs",
-              style: TextStyle(
-                fontSize: 24,
-              ),
-            ),
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.329,
-            child: ListView.builder(
-              itemCount: hotdogList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ItemHotdog(hotdog: hotdogList[index]);
-              },
-            ),
-          ),
-        ],
-      ),
- */

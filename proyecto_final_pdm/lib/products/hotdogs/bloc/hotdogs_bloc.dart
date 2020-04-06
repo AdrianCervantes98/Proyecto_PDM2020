@@ -30,6 +30,33 @@ class HotdogsBloc extends Bloc<HotdogsEvent, HotdogsState> {
         yield CloudStoreGetDataError(
             errorMessage: "No se pudo obtener la lista de productos.");
       }
+    } else if (event is SaveDataEvent) {
+      bool saved = await _saveHotdog(
+        event.productTitle,
+        event.productDescription,
+        event.productImage,
+        event.productPrice,
+        event.productAmount, 
+        event.available
+      );
+      if (saved) {
+        await _getData();
+        yield CloudStoreSaved();
+      } else
+        yield CloudStoreGetDataError(
+          errorMessage: "Ha ocurrido un error. Intente guardar más tarde.",
+        );
+    } else if (event is RemoveDataEvent) {
+      try {
+        await _documentsList[event.index].reference.delete();
+        _documentsList.removeAt(event.index);
+        _hotdogList.removeAt(event.index);
+        yield CloudStoreRemoved();
+      } catch (err) {
+        yield CloudStoreGetDataError(
+          errorMessage: "Ha ocurrido un error. Intente borrar mas tarde.",
+        );
+      }
     }
   }
 
@@ -49,6 +76,30 @@ class HotdogsBloc extends Bloc<HotdogsEvent, HotdogsState> {
           )
           .toList();
       _documentsList = hotdogs.documents;
+      return true;
+    } catch (err) {
+      print(err.toString());
+      return false;
+    }
+  }
+
+  Future<bool> _saveHotdog(
+    String productTitle,
+    String productDescription,
+    String productImage,
+    int productPrice,
+    int productAmount,
+    bool available
+  ) async {
+    try {
+      await _firestoreInstance.collection("hotdogs").document().setData({
+        "productTitle": productTitle,
+        "productDescription": productDescription,
+        "productImage": productImage,
+        "productPrice": productPrice,
+        "productAmount": productAmount,
+        "available": available
+      });
       return true;
     } catch (err) {
       print(err.toString());

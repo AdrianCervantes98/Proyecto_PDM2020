@@ -2,19 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proyecto_final_pdm/products/hamburgers/bloc/hamburgers_bloc.dart';
+import 'package:proyecto_final_pdm/products/snacks/add_snack/bloc/add_snack_bloc.dart';
+import 'package:proyecto_final_pdm/products/snacks/bloc/snacks_bloc.dart';
 
-import 'bloc/add_hamburger_bloc.dart';
 
-
-class AddHamburger extends StatefulWidget {
-  AddHamburger({Key key}) : super(key: key);
+class AddSnack extends StatefulWidget {
+  AddSnack({Key key}) : super(key: key);
 
   @override
-  _AddHamburgerState createState() => _AddHamburgerState();
+  _AddSnackState createState() => _AddSnackState();
 }
 
-class _AddHamburgerState extends State<AddHamburger> {
+class _AddSnackState extends State<AddSnack> {
   File _chosenImage;
   bool available = true;
   String _url;
@@ -23,18 +22,18 @@ class _AddHamburgerState extends State<AddHamburger> {
   TextEditingController _amountController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
-  AddHamburgerBloc bloc;
+  AddSnackBloc bloc;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Agregar hamburguesa")),
+      appBar: AppBar(title: Text("Agregar snack")),
       body: BlocProvider(
         create: (context) {
-          bloc = AddHamburgerBloc()..add(InitEvent());
+          bloc = AddSnackBloc()..add(InitEvent());
           return bloc;
         },
-        child: BlocListener<AddHamburgerBloc, AddHamburgerState>(
+        child: BlocListener<AddSnackBloc, AddSnackState>(
           listener: (context, state) {
             if (state is GetImageState) {
               Scaffold.of(context)
@@ -73,7 +72,7 @@ class _AddHamburgerState extends State<AddHamburger> {
                 );
             }
           },
-          child: BlocBuilder<AddHamburgerBloc, AddHamburgerState>(
+          child: BlocBuilder<AddSnackBloc, AddSnackState>(
             builder: (context, state) {
               
               if (state is GetImageState) {
@@ -187,7 +186,7 @@ class _AddHamburgerState extends State<AddHamburger> {
   }
   
   void _saveData() {
-    BlocProvider.of<HamburgersBloc>(context).add(
+    BlocProvider.of<SnacksBloc>(context).add(
       SaveDataEvent(
         productTitle: _titleController.text,
         productDescription: _descriptionController.text,
