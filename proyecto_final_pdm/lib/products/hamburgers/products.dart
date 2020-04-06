@@ -5,6 +5,7 @@ import 'package:proyecto_final_pdm/comida/item_hotdog.dart';
 import 'package:proyecto_final_pdm/models/product_hamburguesas.dart';
 import 'package:proyecto_final_pdm/models/product_hotdog.dart';
 import 'package:proyecto_final_pdm/models/product_snacks.dart';
+import 'package:proyecto_final_pdm/products/hamburgers/add_hamburger/add_hamburger.dart';
 import 'package:proyecto_final_pdm/products/hamburgers/bloc/hamburgers_bloc.dart';
 import 'package:proyecto_final_pdm/products/snacks/productsSn.dart';
 import 'package:proyecto_final_pdm/products/hotdogs/productshg.dart';
@@ -51,6 +52,21 @@ class _ProductsState extends State<Products> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        heroTag: UniqueKey(),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => BlocProvider.value(
+                value: bloc,
+                child: AddHamburger(),
+              ),
+            ),
+          );
+        },
+        label: Text("Agregar"),
+        icon: Icon(Icons.add_box),
+      ),
       drawer: _drawer(),
       body: BlocProvider(
         create: (context) {
@@ -72,18 +88,34 @@ class _ProductsState extends State<Products> {
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   SnackBar(
-                    content: Text("Error al obtener la lista de productos."),
+                    content: Text("${state.errorMessage}"),
+                  ),
+                );
+            } else if (state is CloudStoreSaved) {
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text("Se ha guardado el elemento."),
+                  ),
+                );
+            } else if (state is CloudStoreRemoved) {
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text("Se ha eliminado el elemento."),
                   ),
                 );
             }
           },
           child: BlocBuilder<HamburgersBloc, HamburgersState>(
               builder: (context, state) {
-                if (state is HamburgersInitial) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
+            if (state is HamburgersInitial) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,10 +132,12 @@ class _ProductsState extends State<Products> {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.666,
                   child: ListView.builder(
-                    itemCount: bloc.getHamburgersList.length != null? bloc.getHamburgersList.length:0,
+                    itemCount: bloc.getHamburgersList.length != null
+                        ? bloc.getHamburgersList.length
+                        : 0,
                     itemBuilder: (BuildContext context, int index) {
                       return ItemHamburguesa(
-                          hamburguesa: bloc.getHamburgersList[index],
+                        hamburguesa: bloc.getHamburgersList[index],
                       );
                     },
                   ),

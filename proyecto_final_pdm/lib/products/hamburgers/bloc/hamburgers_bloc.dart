@@ -22,12 +22,40 @@ class HamburgersBloc extends Bloc<HamburgersEvent, HamburgersState> {
   Stream<HamburgersState> mapEventToState(
     HamburgersEvent event,
   ) async* {
-    if(event is GetDataEvent) {
+    if (event is GetDataEvent) {
       bool dataRetrieved = await _getData();
-      if(dataRetrieved) {
+      if (dataRetrieved) {
         yield CloudStoreGetData();
       } else {
-        yield CloudStoreGetDataError(errorMessage: "No se pudo obtener la lista de productos.");
+        yield CloudStoreGetDataError(
+            errorMessage: "No se pudo obtener la lista de productos.");
+      }
+    } else if (event is SaveDataEvent) {
+      bool saved = await _saveHamburger(
+        event.productTitle,
+        event.productDescription,
+        event.productImage,
+        event.productPrice,
+        event.productAmount, 
+        event.available
+      );
+      if (saved) {
+        await _getData();
+        yield CloudStoreSaved();
+      } else
+        yield CloudStoreGetDataError(
+          errorMessage: "Ha ocurrido un error. Intente guardar más tarde.",
+        );
+    } else if (event is RemoveDataEvent) {
+      try {
+        await _documentsList[event.index].reference.delete();
+        _documentsList.removeAt(event.index);
+        _hamburgersList.removeAt(event.index);
+        yield CloudStoreRemoved();
+      } catch (err) {
+        yield CloudStoreGetDataError(
+          errorMessage: "Ha ocurrido un error. Intente borrar mas tarde.",
+        );
       }
     }
   }
@@ -39,13 +67,12 @@ class HamburgersBloc extends Bloc<HamburgersEvent, HamburgersState> {
       _hamburgersList = hamburgers.documents
           .map(
             (hamburger) => ProductHamburguesas(
-              productTitle: hamburger["productTitle"],
-              productAmount: hamburger["productAmount"],
-              productDescription: hamburger["productDescription"],
-              productImage: hamburger["productImage"],
-              available: hamburger["available"],
-              productPrice: hamburger["productPrice"]
-            ),
+                productTitle: hamburger["productTitle"],
+                productAmount: hamburger["productAmount"],
+                productDescription: hamburger["productDescription"],
+                productImage: hamburger["productImage"],
+                available: hamburger["available"],
+                productPrice: hamburger["productPrice"]),
           )
           .toList();
       _documentsList = hamburgers.documents;
@@ -56,4 +83,27 @@ class HamburgersBloc extends Bloc<HamburgersEvent, HamburgersState> {
     }
   }
 
+  Future<bool> _saveHamburger(
+    String productTitle,
+    String productDescription,
+    String productImage,
+    int productPrice,
+    int productAmount,
+    bool available
+  ) async {
+    try {
+      await _firestoreInstance.collection("hamburguesas").document().setData({
+        "productTitle": productTitle,
+        "productDescription": productDescription,
+        "productImage": productImage,
+        "productPrice": productPrice,
+        "productAmount": productAmount,
+        "available": available
+      });
+      return true;
+    } catch (err) {
+      print(err.toString());
+      return false;
+    }
+  }
 }
