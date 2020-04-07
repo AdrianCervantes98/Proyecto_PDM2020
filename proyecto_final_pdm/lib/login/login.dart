@@ -37,14 +37,19 @@ class _LoginState extends State<Login> {
               centerTitle: true,
             ),
           key: scaffoldKey,
-          body: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.all(24.0),
-                child: _loginBody(),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.all(24.0),
+                    child: _loginBody(),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         );
         },

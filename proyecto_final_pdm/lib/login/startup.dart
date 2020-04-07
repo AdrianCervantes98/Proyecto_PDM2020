@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final_pdm/login/login.dart';
-import 'package:proyecto_final_pdm/login/register.dart';
 
 class Startup extends StatelessWidget {
   const Startup({Key key}) : super(key: key);
@@ -21,29 +20,7 @@ class Startup extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  MaterialButton(
-                    child: Text("REGISTRO",
-                        style: Theme.of(context).textTheme.body1),
-                    color: Theme.of(context).accentColor,
-                    onPressed: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return Register();
-                      }));
-                    },
-                    height: 50,
-                    minWidth: 370,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(10)),
-                  ),
-                ],
-              ),
-            ),
+            SizedBox(height: 48),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -60,7 +37,7 @@ class Startup extends StatelessWidget {
                     }));
                   },
                   height: 50,
-                  minWidth: 370,
+                  minWidth: MediaQuery.of(context).size.width*0.8,
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(10)),
                 ),
