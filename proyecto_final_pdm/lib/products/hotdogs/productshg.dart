@@ -136,7 +136,7 @@ class _ProductsHGState extends State<ProductsHG> {
                     itemCount: bloc.getHotdogsList.length != null? bloc.getHotdogsList.length:0,
                     itemBuilder: (BuildContext context, int index) {
                       return ItemHotdog(
-                          hotdog: bloc.getHotdogsList[index],
+                          hotdog: bloc.getHotdogsList[index], index: index,
                       );
                     },
                   ),

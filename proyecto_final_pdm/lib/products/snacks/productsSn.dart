@@ -136,7 +136,7 @@ class _ProductsSnState extends State<ProductsSn> {
                         : 0,
                     itemBuilder: (BuildContext context, int index) {
                       return ItemSnack(
-                        snacks: bloc.getSnacksList[index],
+                        snacks: bloc.getSnacksList[index], index: index,
                       );
                     },
                   ),
