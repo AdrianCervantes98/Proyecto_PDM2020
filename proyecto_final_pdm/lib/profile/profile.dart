@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proyecto_final_pdm/authentication/bloc/authentication_bloc.dart';
 import 'package:proyecto_final_pdm/mapa/mapa.dart';
 import 'package:proyecto_final_pdm/products/hamburgers/products.dart';
 import 'package:proyecto_final_pdm/profile/aboutUs.dart';
@@ -112,6 +114,8 @@ class Profile extends StatelessWidget {
                     color: Colors.grey[300],
                     child: Text("Cerrar sesión"),
                     onPressed: () {
+                      BlocProvider.of<AuthenticationBloc>(context)
+                        .add(LogOut());
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         return Startup();
