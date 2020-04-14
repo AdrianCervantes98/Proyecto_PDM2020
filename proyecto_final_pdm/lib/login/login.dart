@@ -37,9 +37,7 @@ class _LoginState extends State<Login> {
               centerTitle: true,
             ),
           key: scaffoldKey,
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+          body: 
               Form(
                 key: _formKey,
                 child: SingleChildScrollView(
@@ -49,8 +47,6 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-            ],
-          ),
         );
         },
       );

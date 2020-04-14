@@ -93,8 +93,8 @@ class _MapaState extends State<Mapa> {
               accountEmail: Text(""),
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(
-                          "https://scontent.fgdl5-1.fna.fbcdn.net/v/t1.0-9/80284418_104483557732906_7111122384995745792_n.jpg?_nc_cat=111&_nc_sid=09cbfe&_nc_ohc=ANsbVegZ7D0AX96TLtE&_nc_ht=scontent.fgdl5-1.fna&oh=a0fe576bb47911e12449559db8f03e81&oe=5E94C508"),
+                      image: AssetImage(
+                          "assets/pichi.png"),
                       fit: BoxFit.cover)),
             ),
             Divider(),
