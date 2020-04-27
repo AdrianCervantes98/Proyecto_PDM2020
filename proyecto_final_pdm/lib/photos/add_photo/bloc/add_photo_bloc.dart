@@ -6,18 +6,19 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
-part 'add_hamburger_event.dart';
-part 'add_hamburger_state.dart';
+part 'add_photo_event.dart';
+part 'add_photo_state.dart';
 
-class AddHamburgerBloc extends Bloc<AddHamburgerEvent, AddHamburgerState> {
+class AddPhotoBloc extends Bloc<AddPhotoEvent, AddPhotoState> {
   File _chosenImage;
   String _url;
-  @override
-  AddHamburgerState get initialState => AddHamburgerInitial();
 
   @override
-  Stream<AddHamburgerState> mapEventToState(
-    AddHamburgerEvent event,
+  AddPhotoState get initialState => AddPhotoInitial();
+
+  @override
+  Stream<AddPhotoState> mapEventToState(
+    AddPhotoEvent event,
   ) async* {
     if (event is ChooseImageEvent) {
       bool imagePicked = await _chooseImage();
@@ -35,11 +36,10 @@ class AddHamburgerBloc extends Bloc<AddHamburgerEvent, AddHamburgerState> {
         yield UploadedFileErrorState(errorMessage: "No se pudo cargar la imagen.");
       }
     } else if (event is InitEvent) {
-      yield AddHamburgerInitial();
+      yield AddPhotoInitial();
     }
   }
-
-  Future<bool> _chooseImage() async {
+Future<bool> _chooseImage() async {
     try {
       await ImagePicker.pickImage(
         source: ImageSource.gallery,
@@ -55,12 +55,12 @@ class AddHamburgerBloc extends Bloc<AddHamburgerEvent, AddHamburgerState> {
     }
   }
 
-  Future<bool> _uploadFile() async {
+Future<bool> _uploadFile() async {
     try {
       String filePath = _chosenImage.path;
       StorageReference reference = FirebaseStorage.instance
           .ref()
-          .child("hamburguesas/${Path.basename(filePath)}");
+          .child("photos/${Path.basename(filePath)}");
       StorageUploadTask uploadTask = reference.putFile(_chosenImage);
       StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
       taskSnapshot.ref.getDownloadURL().then((imageUrl) {

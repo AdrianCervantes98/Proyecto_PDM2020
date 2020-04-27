@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final_pdm/authentication/bloc/authentication_bloc.dart';
 import 'package:proyecto_final_pdm/mapa/mapa.dart';
+import 'package:proyecto_final_pdm/photos/photos.dart';
 import 'package:proyecto_final_pdm/products/hamburgers/products.dart';
 import 'package:proyecto_final_pdm/profile/aboutUs.dart';
 import 'package:proyecto_final_pdm/utils/constants.dart';
@@ -79,7 +80,12 @@ class Profile extends StatelessWidget {
                 ListTile(
                   title: Text("Fotos"),
                   leading: Icon(Icons.photo_camera),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return Photos();
+                      }));
+                  },
                 ),
                 ListTile(
                   title: Text("Ubicación"),
