@@ -61,8 +61,6 @@ class _LoginState extends State<Login> {
         _passwordTextField(),
         SizedBox(height: 48),
         _loginButton(),
-        SizedBox(height: 8),
-        _googleButton(),
       ],
     );
   }
@@ -194,40 +192,7 @@ class _LoginState extends State<Login> {
     );
   }
 
-  // google button
-  Widget _googleButton() {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: MaterialButton(
-            color: Colors.red,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            child: Row(
-              children: <Widget>[
-                Icon(
-                  FontAwesomeIcons.google,
-                  color: Colors.grey[200],
-                ),
-                Expanded(
-                  child: Text(
-                    "Google",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey[200]),
-                  ),
-                ),
-              ],
-            ),
-            onPressed: () {
-              BlocProvider.of<AuthenticationBloc>(context)
-                  .add(LoginWithGoogle());
-            },
-          ),
-        ),
-      ],
-    );
-  }
+ 
 
   _login() async {
     if (_formKey.currentState.validate()) {

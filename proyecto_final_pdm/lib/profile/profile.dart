@@ -49,7 +49,7 @@ class Profile extends StatelessWidget {
                 SizedBox(
                   height: 5,
                 ),
-                Text("elpichi@outlookcom"),
+                Text("elpichi@gmail.com"),
                 SizedBox(
                   height: 2,
                 ),
@@ -96,11 +96,6 @@ class Profile extends StatelessWidget {
                       return Mapa();
                     }));
                   },
-                ),
-                ListTile(
-                  title: Text("Pedidos"),
-                  leading: Icon(Icons.shopping_cart),
-                  onTap: () {},
                 ),
                 ListTile(
                   title: Text("Estadísticas"),

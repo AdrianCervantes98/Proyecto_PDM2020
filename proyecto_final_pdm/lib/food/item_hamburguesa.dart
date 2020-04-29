@@ -38,7 +38,7 @@ class _ItemHamburguesaState extends State<ItemHamburguesa> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                   child: Text(
-                    "¡Eliminar Item!",
+                    "¡Eliminar Producto!",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,

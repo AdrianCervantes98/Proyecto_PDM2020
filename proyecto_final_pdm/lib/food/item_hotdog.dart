@@ -39,7 +39,7 @@ class _ItemHotdogState extends State<ItemHotdog> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                   child: Text(
-                    "¡Eliminar Item!",
+                    "¡Eliminar Producto!",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
