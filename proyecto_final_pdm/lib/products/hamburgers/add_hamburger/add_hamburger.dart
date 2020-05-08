@@ -6,7 +6,6 @@ import 'package:proyecto_final_pdm/products/hamburgers/bloc/hamburgers_bloc.dart
 
 import 'bloc/add_hamburger_bloc.dart';
 
-
 class AddHamburger extends StatefulWidget {
   AddHamburger({Key key}) : super(key: key);
 
@@ -28,7 +27,8 @@ class _AddHamburgerState extends State<AddHamburger> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Agregar hamburguesa")),
+      appBar: AppBar(title: Text("Agregar hamburguesa"),
+      centerTitle: true,),
       body: BlocProvider(
         create: (context) {
           bloc = AddHamburgerBloc()..add(InitEvent());
@@ -44,8 +44,7 @@ class _AddHamburgerState extends State<AddHamburger> {
                     content: Text("Obteniendo imagen..."),
                   ),
                 );
-            } 
-            else if (state is GetImageErrorState) {
+            } else if (state is GetImageErrorState) {
               Scaffold.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -53,8 +52,7 @@ class _AddHamburgerState extends State<AddHamburger> {
                     content: Text("Error al cargar la imagen."),
                   ),
                 );
-            }  
-            else if (state is UploadedFileState) {
+            } else if (state is UploadedFileState) {
               Scaffold.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -62,8 +60,7 @@ class _AddHamburgerState extends State<AddHamburger> {
                     content: Text("Subiendo imagen..."),
                   ),
                 );
-            } 
-            else if (state is UploadedFileErrorState) {
+            } else if (state is UploadedFileErrorState) {
               Scaffold.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -75,10 +72,9 @@ class _AddHamburgerState extends State<AddHamburger> {
           },
           child: BlocBuilder<AddHamburgerBloc, AddHamburgerState>(
             builder: (context, state) {
-              
               if (state is GetImageState) {
                 _chosenImage = state.image;
-              } 
+              }
               if (state is UploadedFileState) {
                 _url = state.image;
                 _saveData();
@@ -106,14 +102,17 @@ class _AddHamburgerState extends State<AddHamburger> {
                                     fallbackWidth: 150,
                                   ),
                                 ),
-                          SizedBox(height: 48),
-                          IconButton(
-                            icon: Icon(Icons.image),
+                          SizedBox(height: 24),
+                          MaterialButton(
+                            color: Colors.indigo[100],
+                            child: new Text("Agregar Imagen"),
                             onPressed: () {
                               bloc.add(ChooseImageEvent());
                             },
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10)),
                           ),
-                          SizedBox(height: 48),
+                          SizedBox(height: 24),
                           TextField(
                             controller: _titleController,
                             decoration: InputDecoration(
@@ -166,8 +165,11 @@ class _AddHamburgerState extends State<AddHamburger> {
                                     setState(() {
                                       _isLoading = true;
                                     });
-                                    bloc.add(UploadFileEvent(image: _chosenImage));
+                                    bloc.add(
+                                        UploadFileEvent(image: _chosenImage));
                                   },
+                                   shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10)),
                                 ),
                               )
                             ],
@@ -185,17 +187,16 @@ class _AddHamburgerState extends State<AddHamburger> {
       ),
     );
   }
-  
+
   void _saveData() {
     BlocProvider.of<HamburgersBloc>(context).add(
       SaveDataEvent(
-        productTitle: _titleController.text,
-        productDescription: _descriptionController.text,
-        productImage: _url,
-        productPrice:  int.parse(_priceController.text),
-        productAmount: int.parse(_amountController.text),
-        available: available
-      ),
+          productTitle: _titleController.text,
+          productDescription: _descriptionController.text,
+          productImage: _url,
+          productPrice: int.parse(_priceController.text),
+          productAmount: int.parse(_amountController.text),
+          available: available),
     );
     _isLoading = false;
     Future.delayed(Duration(milliseconds: 1500)).then((_) {

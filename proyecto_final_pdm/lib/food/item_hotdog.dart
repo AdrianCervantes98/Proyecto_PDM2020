@@ -52,7 +52,7 @@ class _ItemHotdogState extends State<ItemHotdog> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-                  child: Text("¿Estas seguro?"),
+                  child: Text("¿Estás seguro?"),
                 ),
               ],
             ),

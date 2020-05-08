@@ -23,7 +23,7 @@ class AboutUs extends StatelessWidget {
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        'About us.',
+        'El Pichi',
         style: TextStyle(fontSize: 28.0, color: Colors.white),
       ),
     );
@@ -31,7 +31,7 @@ class AboutUs extends StatelessWidget {
     final info = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit condimentum mauris id tempor. Praesent eu commodo lacus. Praesent eget mi sed libero eleifend tempor. Sed at fringilla ipsum. Duis malesuada feugiat urna vitae convallis. Aliquam eu libero arcu.',
+        'Somos una empresa dedicada a la venta de alimentos de comida rápida. Contamos con más de 5 años de experiencia en el negocio de la comida rápida, además de ser responsables con el medio ambiente mediante la utlización de materiales reciclables. ',
         style: TextStyle(fontSize: 16.0, color: Colors.white),
         textAlign: TextAlign.center,
       ),
@@ -53,7 +53,7 @@ class AboutUs extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
           child: MaterialButton(
                     child: Text(
-                      "Go Back",
+                      "REGRESAR",
                       style: Theme.of(context).textTheme.body1,
                     ),
                     color: Theme.of(context).accentColor,

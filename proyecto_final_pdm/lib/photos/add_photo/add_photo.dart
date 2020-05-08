@@ -23,7 +23,10 @@ class _AddPhotoState extends State<AddPhoto> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Agregar fotografía")),
+      appBar: AppBar(
+        title: Text("Agregar fotografía"),
+        centerTitle: true,
+      ),
       body: BlocProvider(
         create: (context) {
           bloc = AddPhotoBloc()..add(InitEvent());
@@ -39,8 +42,7 @@ class _AddPhotoState extends State<AddPhoto> {
                     content: Text("Obteniendo imagen..."),
                   ),
                 );
-            } 
-            else if (state is GetImageErrorState) {
+            } else if (state is GetImageErrorState) {
               Scaffold.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -48,8 +50,7 @@ class _AddPhotoState extends State<AddPhoto> {
                     content: Text("Error al cargar la imagen."),
                   ),
                 );
-            }  
-            else if (state is UploadedFileState) {
+            } else if (state is UploadedFileState) {
               Scaffold.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -57,8 +58,7 @@ class _AddPhotoState extends State<AddPhoto> {
                     content: Text("Subiendo imagen..."),
                   ),
                 );
-            } 
-            else if (state is UploadedFileErrorState) {
+            } else if (state is UploadedFileErrorState) {
               Scaffold.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -70,10 +70,9 @@ class _AddPhotoState extends State<AddPhoto> {
           },
           child: BlocBuilder<AddPhotoBloc, AddPhotoState>(
             builder: (context, state) {
-              
               if (state is GetImageState) {
                 _chosenImage = state.image;
-              } 
+              }
               if (state is UploadedFileState) {
                 _url = state.image;
                 _saveData();
@@ -101,18 +100,21 @@ class _AddPhotoState extends State<AddPhoto> {
                                     fallbackWidth: 150,
                                   ),
                                 ),
-                          SizedBox(height: 48),
-                          IconButton(
-                            icon: Icon(Icons.image),
+                          SizedBox(height: 24),
+                          MaterialButton(
+                            color: Colors.indigo[100],
+                            child: new Text("Agregar Imagen"),
                             onPressed: () {
                               bloc.add(ChooseImageEvent());
                             },
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10)),
                           ),
-                          SizedBox(height: 48),
+                          SizedBox(height: 24),
                           TextField(
                             controller: _titleController,
                             decoration: InputDecoration(
-                              hintText: "Nombre del producto",
+                              hintText: "Nombre de la foto",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -123,7 +125,7 @@ class _AddPhotoState extends State<AddPhoto> {
                             controller: _descriptionController,
                             maxLines: 2,
                             decoration: InputDecoration(
-                              hintText: "Descripción del producto",
+                              hintText: "Descripción de la foto",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -139,8 +141,12 @@ class _AddPhotoState extends State<AddPhoto> {
                                     setState(() {
                                       _isLoading = true;
                                     });
-                                    bloc.add(UploadFileEvent(image: _chosenImage));
+                                    bloc.add(
+                                        UploadFileEvent(image: _chosenImage));
                                   },
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(10)),
                                 ),
                               )
                             ],
@@ -158,13 +164,13 @@ class _AddPhotoState extends State<AddPhoto> {
       ),
     );
   }
-  
+
   void _saveData() {
     BlocProvider.of<PhotoBloc>(context).add(
       SaveDataEvent(
-       descripcion: _descriptionController.text,
-       nombre: _titleController.text,
-       imageUrl: _url,
+        descripcion: _descriptionController.text,
+        nombre: _titleController.text,
+        imageUrl: _url,
       ),
     );
     _isLoading = false;

@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final_pdm/products/hotdogs/add_hotdogs/bloc/add_hotdogs_bloc.dart';
 import 'package:proyecto_final_pdm/products/hotdogs/bloc/hotdogs_bloc.dart';
 
-
 class AddHotdog extends StatefulWidget {
   AddHotdog({Key key}) : super(key: key);
 
@@ -27,7 +26,8 @@ class _AddHotdogState extends State<AddHotdog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Agregar hotdog")),
+      appBar: AppBar(title: Text("Agregar hotdog"),
+      centerTitle: true,),
       body: BlocProvider(
         create: (context) {
           bloc = AddHotdogsBloc()..add(InitEvent());
@@ -43,8 +43,7 @@ class _AddHotdogState extends State<AddHotdog> {
                     content: Text("Obteniendo imagen..."),
                   ),
                 );
-            } 
-            else if (state is GetImageErrorState) {
+            } else if (state is GetImageErrorState) {
               Scaffold.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -52,8 +51,7 @@ class _AddHotdogState extends State<AddHotdog> {
                     content: Text("Error al cargar la imagen."),
                   ),
                 );
-            }  
-            else if (state is UploadedFileState) {
+            } else if (state is UploadedFileState) {
               Scaffold.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -61,8 +59,7 @@ class _AddHotdogState extends State<AddHotdog> {
                     content: Text("Subiendo imagen..."),
                   ),
                 );
-            } 
-            else if (state is UploadedFileErrorState) {
+            } else if (state is UploadedFileErrorState) {
               Scaffold.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -74,10 +71,9 @@ class _AddHotdogState extends State<AddHotdog> {
           },
           child: BlocBuilder<AddHotdogsBloc, AddHotdogsState>(
             builder: (context, state) {
-              
               if (state is GetImageState) {
                 _chosenImage = state.image;
-              } 
+              }
               if (state is UploadedFileState) {
                 _url = state.image;
                 _saveData();
@@ -105,14 +101,17 @@ class _AddHotdogState extends State<AddHotdog> {
                                     fallbackWidth: 150,
                                   ),
                                 ),
-                          SizedBox(height: 48),
-                          IconButton(
-                            icon: Icon(Icons.image),
+                          SizedBox(height: 24),
+                          MaterialButton(
+                            color: Colors.indigo[100],
+                            child: new Text("Agregar Imagen"),
                             onPressed: () {
                               bloc.add(ChooseImageEvent());
                             },
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10)),
                           ),
-                          SizedBox(height: 48),
+                          SizedBox(height: 24),
                           TextField(
                             controller: _titleController,
                             decoration: InputDecoration(
@@ -165,8 +164,11 @@ class _AddHotdogState extends State<AddHotdog> {
                                     setState(() {
                                       _isLoading = true;
                                     });
-                                    bloc.add(UploadFileEvent(image: _chosenImage));
+                                    bloc.add(
+                                        UploadFileEvent(image: _chosenImage));
                                   },
+                                   shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10)),
                                 ),
                               )
                             ],
@@ -184,17 +186,16 @@ class _AddHotdogState extends State<AddHotdog> {
       ),
     );
   }
-  
+
   void _saveData() {
     BlocProvider.of<HotdogsBloc>(context).add(
       SaveDataEvent(
-        productTitle: _titleController.text,
-        productDescription: _descriptionController.text,
-        productImage: _url,
-        productPrice:  int.parse(_priceController.text),
-        productAmount: int.parse(_amountController.text),
-        available: available
-      ),
+          productTitle: _titleController.text,
+          productDescription: _descriptionController.text,
+          productImage: _url,
+          productPrice: int.parse(_priceController.text),
+          productAmount: int.parse(_amountController.text),
+          available: available),
     );
     _isLoading = false;
     Future.delayed(Duration(milliseconds: 1500)).then((_) {

@@ -48,7 +48,7 @@ class _ItemPhotosState extends State<ItemPhotos> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                   child: Text(
-                    "¡Eliminar Item!",
+                    "¡Eliminar Foto!",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -61,7 +61,7 @@ class _ItemPhotosState extends State<ItemPhotos> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-                  child: Text("¿Estas seguro?"),
+                  child: Text("¿Estás seguro?"),
                 ),
               ],
             ),

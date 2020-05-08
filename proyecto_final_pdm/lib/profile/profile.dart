@@ -1,16 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final_pdm/authentication/bloc/authentication_bloc.dart';
+import 'package:proyecto_final_pdm/graphs/graphs.dart';
 import 'package:proyecto_final_pdm/mapa/mapa.dart';
 import 'package:proyecto_final_pdm/photos/photos.dart';
 import 'package:proyecto_final_pdm/products/hamburgers/products.dart';
 import 'package:proyecto_final_pdm/profile/aboutUs.dart';
 import 'package:proyecto_final_pdm/utils/constants.dart';
+// EXCLUDE_FROM_GALLERY_DOCS_END
+import 'package:charts_flutter/flutter.dart' as charts;
 
 import '../login/startup.dart';
 
 class Profile extends StatelessWidget {
+  List<Map<String, dynamic>> get datos => [
+        {
+          "cantidad": 26,
+          "producto": "Hamburguesas",
+          "descripcion": "Bacon",
+          "color": "0xff32a852",
+          "altura": 3.5
+        },
+        {
+          "cantidad": 16,
+          "producto": "Snacks",
+          "descripcion": "Nachos",
+          "color": "0xffeb0e49",
+          "altura": 0.5
+        },
+        {
+          "cantidad": 6,
+          "producto": "Hotdgos",
+          "descripcion": "Especial",
+          "color": "0xff6532a8",
+          "altura": 3.1
+        },
+      ];
+      
   const Profile({Key key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +106,7 @@ class Profile extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  title: Text("Fotos"),
+                  title: Text("Fotos del lugar"),
                   leading: Icon(Icons.photo_camera),
                   onTap: () {
                     Navigator.of(context)
@@ -100,7 +128,11 @@ class Profile extends StatelessWidget {
                 ListTile(
                   title: Text("Estadísticas"),
                   leading: Icon(Icons.monetization_on),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => Graphs(listadoDeDatos: datos,showBarChart: false,)),
+              );
+                  },
                 ),
               ],
             ),

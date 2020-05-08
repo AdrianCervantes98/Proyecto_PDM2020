@@ -52,7 +52,7 @@ class _ItemSnackState extends State<ItemSnack> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-                  child: Text("¿Estas seguro?"),
+                  child: Text("¿Estás seguro?"),
                 ),
               ],
             ),

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.indigo,
         backgroundColor: Colors.white,
         textTheme: TextTheme(
           body1: TextStyle(
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        cardColor: Colors.grey[300],
+        cardColor: Color(0xffEBE8FF),
       ),
       home: Scaffold(
         body: SplashScreen(), 
